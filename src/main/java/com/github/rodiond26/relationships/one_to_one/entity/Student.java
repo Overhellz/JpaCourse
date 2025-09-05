@@ -1,15 +1,16 @@
-package com.github.rodiond26.crud.entity;
+package com.github.rodiond26.relationships.one_to_one.entity;
 
 import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.FieldDefaults;
 
-import java.time.LocalDateTime;
-
-//@Entity
-//@Table(name = "students")
+@Entity
+@Table(name = "students")
 @NoArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
 @Setter
 public class Student {
@@ -17,25 +18,25 @@ public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long id;
+    Long id;
 
-    @Column(name = "name", nullable = false, unique = true)
-    private String name;
+    @Column(name = "name")
+    String name;
 
     @Column(name = "surname")
-    private String surname;
+    String surname;
 
     @Column(name = "avg_grade")
-    private Double avgGrade;
+    Double avgGrade;
 
-    @Transient
-    private LocalDateTime createdDate;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "passport_id")
+    Passport passport;
 
     public Student(String name, String surname, Double avgGrade) {
         this.name = name;
         this.surname = surname;
         this.avgGrade = avgGrade;
-        this.createdDate = LocalDateTime.now();
     }
 
     @Override
@@ -45,7 +46,6 @@ public class Student {
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", avgGrade=" + avgGrade +
-                ", createdDate=" + createdDate +
                 '}';
     }
 }
