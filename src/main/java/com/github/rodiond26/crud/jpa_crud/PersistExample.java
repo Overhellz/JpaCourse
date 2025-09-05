@@ -1,6 +1,6 @@
 package com.github.rodiond26.crud.jpa_crud;
 
-import com.github.rodiond26.entity.Student;
+import com.github.rodiond26.crud.entity.Student;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
@@ -22,10 +22,12 @@ public class PersistExample {
             transaction.begin();
             student1 = new Student("Chanel", "King", 9.1);
             student2 = new Student("Leo", "Farrell", 8.4);
-            student3 = new Student("Yulia", "Dean", 8.7);
-            student4 = new Student("Yulia", "Dean", 8.7);
+            student3 = new Student("Yulia1", "Dean", 8.7);
+            student4 = new Student("Yulia2", "Dean", 8.7);
             entityManager.persist(student1);
             entityManager.persist(student2);
+            entityManager.persist(student3);
+            entityManager.persist(student4);
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {
@@ -40,7 +42,8 @@ public class PersistExample {
         }
 
         System.out.println(student1);
-        System.out.println(student3);
         System.out.println(student2);
+        System.out.println(student3);
+        System.out.println(student4);
     }
 }

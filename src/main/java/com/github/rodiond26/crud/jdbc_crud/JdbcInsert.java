@@ -1,6 +1,6 @@
 package com.github.rodiond26.crud.jdbc_crud;
 
-import com.github.rodiond26.entity.Student;
+import com.github.rodiond26.crud.entity.Student;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

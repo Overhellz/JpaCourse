@@ -1,6 +1,6 @@
 package com.github.rodiond26.crud.jpa_crud;
 
-import com.github.rodiond26.entity.Student;
+import com.github.rodiond26.crud.entity.Student;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
