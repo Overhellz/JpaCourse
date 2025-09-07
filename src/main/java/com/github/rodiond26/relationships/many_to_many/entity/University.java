@@ -1,4 +1,4 @@
-package com.github.rodiond26.relationships.one_to_many.entity;
+package com.github.rodiond26.relationships.many_to_many.entity;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
@@ -11,8 +11,8 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
-//@Entity
-//@Table(name = "universities")
+@Entity
+@Table(name = "universities")
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
@@ -30,18 +30,19 @@ public class University {
     @Column(name = "founding_date")
     Date foundingDate;
 
-    @OneToMany(mappedBy = "university", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
-    @OrderBy("avgGrade DESC, name ASC")
-    List<Student> students = new ArrayList<>();
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    @JoinTable(name = "teacher_university",
+            joinColumns = @JoinColumn(name = "university_id"),
+            inverseJoinColumns = @JoinColumn(name = "teacher_id"))
+    List<Teacher> teachers = new ArrayList<>();
 
     public University(String name, Date foundingDate) {
         this.name = name;
         this.foundingDate = foundingDate;
     }
 
-    public void addStudentToUniversity(Student student) {
-        students.add(student);
-        student.setUniversity(this);
+    public void addTeacherToUniversity(Teacher teacher) {
+        this.teachers.add(teacher);
     }
 
     @Override

@@ -7,8 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
-@Entity
-@Table(name = "students")
+//@Entity
+//@Table(name = "students")
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
