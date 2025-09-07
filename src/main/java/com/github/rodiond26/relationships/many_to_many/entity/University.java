@@ -11,8 +11,8 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
-@Table(name = "universities")
+//@Entity
+//@Table(name = "universities")
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter

@@ -21,8 +21,6 @@ POJO (Plain Old Java Object) – обычно простой по функцио
 
 ---
 
-## JPA
-
 ### Основные аннотации
 
 - `@Entity` превращает обычный Java класс в Entity класс. Entity класс – это Java класс (POJO), который отображает
@@ -110,3 +108,12 @@ POJO (Plain Old Java Object) – обычно простой по функцио
     - `@ManyToOne` : `FetchType.EAGER`
     - `@ManyToMany` : `FetchType.LAZY`
 
+---
+
+### Persistence Context
+
+`Persistence Context` – это эффективный управленец нашими entities, которые в нём содержатся.
+`Persistence Context` – это сервис/место, где помнят все модификации entities, а также изменения их статусов.
+`Entity Manager` – это интерфейс/представитель, посредством которого мы взаимодействуем с Persistence Context.
+
+#### Entity States
