@@ -43,6 +43,9 @@ POJO (Plain Old Java Object) – обычно простой по функцио
     - `EnumType.STRING` - использовать текстовое значение enum.
 
 
+- `@OrderBy("avgGrade DESC, name ASC")` - используется для сортировки возвращаемого результата.
+
+
 - `EntityManager` - сущность для управления entity. EntityManager - посредник для работы с БД. EntityManager похож на
   сессию в БД.
 
@@ -66,10 +69,10 @@ POJO (Plain Old Java Object) – обычно простой по функцио
 
 ### Table relationships
 
-- `One-To-One` - один-к-одному (студент-паспорт).
-- `One-To-Many` - один-ко-многим.
-- `Many-To-One` - многие-к-одному.
-- `Many-To-Many` - многие-ко-многим.
+- `@OneToOne` - один-к-одному (студент-паспорт).
+- `@OneToMany` - один-ко-многим (студент-университет) - Foreign Key должен быть со стороны many.
+- `@ManyToOne` - многие-к-одному (университет-студент).
+- `@ManyToMany` - многие-ко-многим (фильмы-актеры).
 
 
 - `Associations`:
@@ -85,3 +88,15 @@ POJO (Plain Old Java Object) – обычно простой по функцио
 
 - `Cascade Type` - Cascade операции – это выполнение операции не только для Entity, на котором операция вызывается, но и
   на связанных с ним Entity.
+
+
+- `Loading Types`:
+    - `Eager` – это нетерпеливая загрузка, при которой связанные сущности загружаются сразу вместе с загрузкой основной
+      сущности.
+    - `Lazy` - это ленивая загрузка, при которой связанные сущности НЕ загружаются сразу вместе с загрузкой основной
+      сущности. Связанные сущности загружаются только при первом обращении к ним.
+- `Default Fetch Types`:
+    - `@OneToOne` : `FetchType.EAGER`
+    - `@OneToMany` : `FetchType.LAZY`
+    - `@ManyToOne` : `FetchType.EAGER`
+    - `@ManyToMany` : `FetchType.LAZY`

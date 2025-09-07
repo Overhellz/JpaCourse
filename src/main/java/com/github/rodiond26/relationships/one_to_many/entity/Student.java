@@ -1,4 +1,4 @@
-package com.github.rodiond26.relationships.one_to_one.entity;
+package com.github.rodiond26.relationships.one_to_many.entity;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
@@ -7,8 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
-//@Entity
-//@Table(name = "students")
+@Entity
+@Table(name = "students")
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
@@ -29,9 +29,9 @@ public class Student {
     @Column(name = "avg_grade")
     Double avgGrade;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "passport_id")
-    Passport passport;
+    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    @JoinColumn(name = "university_id")
+    University university;
 
     public Student(String name, String surname, Double avgGrade) {
         this.name = name;
