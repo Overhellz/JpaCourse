@@ -114,6 +114,19 @@ POJO (Plain Old Java Object) – обычно простой по функцио
 
 `Persistence Context` – это эффективный управленец нашими entities, которые в нём содержатся.
 `Persistence Context` – это сервис/место, где помнят все модификации entities, а также изменения их статусов.
+
+- Persistence Context появляется/создается при создании Entity Manager. Persistence Context закрывается/изчезает при
+  закрытии Entity Manager.
+
 `Entity Manager` – это интерфейс/представитель, посредством которого мы взаимодействуем с Persistence Context.
 
 #### Entity States
+
+- `Transient (New)` - только что созданный объект, еще не имеет привязки к строке в таблице.
+
+- `Persistent (Managed)` - объект, у которого есть связь со строкой в таблице. Persistence Context начинает управлять
+  этим entity.
+
+- `Detached` - объект становится Detached, когда происходит закрытие Entity Manager, когда некому управлять этим entity.
+
+- `Removed` - объект запланирован на удаление.

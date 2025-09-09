@@ -1,12 +1,13 @@
 package com.github.rodiond26.persistence_context;
 
 import com.github.rodiond26.persistence_context.entity.Teacher;
+import com.sun.jdi.event.MethodExitEvent;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
 
-public class EntityStatesExample1 {
+public class EntityStatesExample2 {
     public static void main(String[] args) {
 
         EntityManagerFactory factory = Persistence.createEntityManagerFactory("jpa-course");
@@ -16,14 +17,10 @@ public class EntityStatesExample1 {
         try {
             transaction.begin();
 
-            Teacher teacher1 = new Teacher("name3", "surname3", "subject3", false);
-            Teacher teacher2 = new Teacher("name4", "surname4", "subject4", false);
-
-            entityManager.persist(teacher1);
-            entityManager.persist(teacher2);
+            Teacher teacher1 = entityManager.find(Teacher.class, 1);
+            entityManager.remove(teacher1);
 
             transaction.commit();
-
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();

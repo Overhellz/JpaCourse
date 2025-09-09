@@ -6,7 +6,7 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
 
-public class EntityStatesExample1 {
+public class TransactionExample2 {
     public static void main(String[] args) {
 
         EntityManagerFactory factory = Persistence.createEntityManagerFactory("jpa-course");
@@ -16,16 +16,21 @@ public class EntityStatesExample1 {
         try {
             transaction.begin();
 
-            Teacher teacher1 = new Teacher("name3", "surname3", "subject3", false);
-            Teacher teacher2 = new Teacher("name4", "surname4", "subject4", false);
+            Teacher teacher1 = new Teacher("name8", "surname8", "subject8", true);
+            Teacher teacher2 = new Teacher("name9", "surname9", "subject9", false);
 
             entityManager.persist(teacher1);
+
+            Teacher findTeacher = entityManager.find(Teacher.class, 100);
+            findTeacher.getName();
+            findTeacher.getSurname();
+
             entityManager.persist(teacher2);
 
             transaction.commit();
-
         } catch (Exception e) {
             if (transaction != null) {
+                System.out.println("======= Rollback! =======");
                 transaction.rollback();
             }
             e.printStackTrace();
